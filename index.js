@@ -100,28 +100,28 @@ app.get("/movies/:title", async (req, res) => {
   }
 })
 
-// // get all the movies to the database
-// async function readAllMovies() {
-//   try {
-//     const allMovies = await Movie.find()
-//     return allMovies
-//   } catch (error) {
-//     throw error
-//   }`  `
-// }
+// get all the movies to the database
+async function readAllMovies() {
+  try {
+    const allMovies = await Movie.find()
+    return allMovies
+  } catch (error) {
+    throw error
+  }`  `
+}
 
-// app.get("/movies", async (req, res) => {
-//   try {
-//     const movies = await readAllMovies()
-//     if (movies.length !== 0) {
-//       res.json(movies)
-//     } else {
-//       res.status(404).json({ error: "no movie found." })
-//     }
-//   } catch (error) {
-//     res.status(500).json({ error: "Failed to Fetch movies." })
-//   }
-// })
+app.get("/getMovies", async (req, res) => {
+  try {
+    const movies = await readAllMovies()
+    if (movies.length !== 0) {
+      res.json(movies)
+    } else {
+      res.status(404).json({ error: "no movie found." })
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to Fetch movies." })
+  }
+})
 
 // // read movies by director name
 // async function readMovieByDirector(directorName) {
