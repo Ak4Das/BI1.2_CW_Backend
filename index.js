@@ -54,28 +54,28 @@ app.post("/movies", async (req, res) => {
   }
 })
 
-// async function deleteMovie(movieId) {
-//   try {
-//     const deletedMovie = await Movie.findByIdAndDelete(movieId)
-//     return deletedMovie
-//   } catch (error) {
-//     throw error
-//   }
-// }
+async function deleteMovie(movieId) {
+  try {
+    const deletedMovie = await Movie.findByIdAndDelete(movieId)
+    return deletedMovie
+  } catch (error) {
+    throw error
+  }
+}
 
-// app.delete("/movies/:movieId", async (req, res) => {
-//   try {
-//     const deletedMovie = await deleteMovie(req.params.movieId)
-//     res
-//       .status(200)
-//       .json({
-//         error: "Movie deleted successfully.",
-//         deletedMovie: deletedMovie,
-//       })
-//   } catch (error) {
-//     res.status(500).json({ error: "Failed to delete movie. " })
-//   }
-// })
+app.delete("/delete/:movieId", async (req, res) => {
+  try {
+    const deletedMovie = await deleteMovie(req.params.movieId)
+    res
+      .status(200)
+      .json({
+        error: "Movie deleted successfully.",
+        deletedMovie: deletedMovie,
+      })
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete movie. " })
+  }
+})
 
 // find a movie with a particular title
 async function readMovieByTitle(movieTitle) {
